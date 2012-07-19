@@ -1,0 +1,54 @@
+#!/bin/sh
+
+port=80
+speed=5
+cancel=0
+pipe_number=00999
+
+usage()
+{
+      echo "usage: throttle [-p port] [-s speed] [-x]"
+      echo "       -x parameter will cancel throttling"
+      exit 1;
+}
+
+if [ $# -eq 0 ] ; then
+      usage
+      exit 1
+fi
+
+# check for root user
+if [ ! $UID -eq 0 ]; then
+    echo "This script must be run as root."
+    exit 1
+fi
+
+while getopts p:s:x opt
+do
+    case "$opt" in
+      p)  port="$OPTARG";;
+      s)  speed="$OPTARG";;
+      x)  cancel=1;;
+      \?) usage;;
+    esac
+done
+
+if [ $cancel = 1 ] ; then
+
+    matches=$(ipfw show | grep ^${pipe_number} -c)
+    
+    if [ $matches -ge 1 ] ; then
+        sudo ipfw delete $pipe_number
+        echo "throttling disabled"
+    else
+        echo "throttling isn't enabled"
+    fi
+    
+    exit
+else
+
+    sudo ipfw pipe 1 config bw ${speed}KByte/s
+    ipfw -q add $pipe_number pipe 1 in src-port $port
+    echo "throttling port $port at $speed kb/s"
+    exit 1
+fi
