@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/git/repos/pictura/deployment_c5/config/deploy'
+let g:netrw_dirhist_2='/git/repos/pictura/kev_drupal_test/config/deploy'
+let g:netrw_dirhist_3='/git/repos/pictura/deployment_c5_new/config/deploy'
+let g:netrw_dirhist_4='/git/repos/qhp_website/config/deploy'
+let g:netrw_dirhist_5='/git/repos/lab/packages/config/deploy'
+let g:netrw_dirhist_6='/Users/pictura4/.composer/cache.git'
+let g:netrw_dirhist_7='/git/repos/pictura/easyemail/.git'
+let g:netrw_dirhist_8='/git/repos/lab/packages/config/deploy'

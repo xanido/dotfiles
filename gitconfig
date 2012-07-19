@@ -1,0 +1,19 @@
+[user]
+	name = Tim Anido
+	email = tim@pictura.com.au
+[merge]
+	tool = diffmerge
+[diff]
+    tool = diffmerge
+[difftool "diffmerge"]
+    cmd = diffmerge "$LOCAL" "$REMOTE"
+[mergetool "diffmerge"]
+    trustExitCode = true
+	cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+[color]
+	ui = true
+[core]
+	quotepath = false
+    excludesfile = ~/.gitignore
+[rerere]
+    enabled = true

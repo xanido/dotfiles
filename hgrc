@@ -1,0 +1,35 @@
+[ui]
+username = Tim Anido <tim@pictura.com.au>
+ignore = ~/.hgignore                                                              
+remotecmd = /usr/local/bin/hg
+
+[extensions]
+hgext.extdiff =
+hgext.churn =
+hgext.graphlog =
+color = 
+hgext.mq =
+rebase =
+hgext.record =
+hgext.purge =
+hgext.hgk = 
+
+[extdiff]
+cmd.d = /usr/local/bin/diffmerge
+cmd.ksdiff = /usr/local/bin/ksdiff-wrapper
+opts.ksdiff = hg
+
+[extqdiff]
+cmd.qd = /usr/local/bin/diffmerge
+
+[merge-tools]
+diffmerge.executable = /usr/bin/diffmerge
+diffmerge.args = -merge -result=$output -t1="Local Version" -t2=$output -t3="Other Version" -caption=$output $local $base $other
+diffmerge.binary = False
+diffmerge.symlinks = False
+diffmerge.gui = True
+
+[alias]
+slog = log --style ~/.hg/slog.template
+changelog = log --template '{date|shortdate} [{node|short}] by {author|person}\n\t{desc|firstline|fill76|tabindent}\n\n'
+qstatus = status --rev -2:.
