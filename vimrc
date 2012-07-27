@@ -1,5 +1,7 @@
 syntax on
-let g:solarized_termcolors=16
+"let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+colorscheme solarized
 set background=dark
 set number
 set nocompatible
