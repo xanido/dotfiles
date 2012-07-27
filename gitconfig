@@ -17,3 +17,10 @@
     excludesfile = ~/.gitignore
 [rerere]
     enabled = true
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    d = diffall
+    di = diffall --cached
+    graph = log --graph --decorate
