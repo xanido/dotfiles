@@ -3,6 +3,7 @@ PATH=/usr/local/php5/bin:$PATH:/usr/local/mysql/bin:/usr/local/liquibase:/usr/lo
 alias ls="ls -G"
 alias ..="cd .."
 alias -- -="cd -"
+alias flushdns="sudo killall -HUP mDNSResponder"
 function getip() { nslookup "$@" | awk '{ if($1 == "Address:" && NR > 2 ){ print $2; } }' ;}
 
 find /Users/timothy/.ssh -type f -not -regex ^.*.pub$ -not -name config -not -name known_hosts -exec ssh-add \{\} \;
