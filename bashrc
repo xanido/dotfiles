@@ -5,6 +5,18 @@ alias ..="cd .."
 alias -- -="cd -"
 alias flushdns="sudo killall -HUP mDNSResponder"
 function getip() { nslookup "$@" | awk '{ if($1 == "Address:" && NR > 2 ){ print $2; } }' ;}
+function sr() { 
+    if [ -z "$1" -o -z "$2" ] ; then
+        echo "Invalid arguments."
+        echo "sr <search> <replace> [path]"
+        return 1
+    fi
+    path="."
+    if [ ! -z "$3" ] ; then
+        path="$3";
+    fi
+    find "$path" -type f -exec perl -p -i -e "s/$1/$2/g" \{\} \;
+}
 
 find /Users/timothy/.ssh -type f -not -regex ^.*.pub$ -not -name config -not -name known_hosts -exec ssh-add \{\} \;
 
