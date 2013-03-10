@@ -1,0 +1,14 @@
+#!/usr/bin/php -q
+<?php
+/* Removes the control characters that Photoshop adds to text and 
+ * replaces them with newlines. */
+$fd = fopen("php://stdin", "r"); 
+$text = ""; // This will be the variable holding the data.
+while (!feof($fd)) {
+    $text .= fread($fd, 1024);
+}
+fclose($fd);
+   
+$text = preg_replace('/\015/', "\r\n\r\n", $email);
+$text = preg_replace('/\003/', "\r\n", $email);
+echo $email;
