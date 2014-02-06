@@ -9,6 +9,6 @@ while (!feof($fd)) {
 }
 fclose($fd);
    
-$text = preg_replace('/\015/', "\r\n\r\n", $email);
-$text = preg_replace('/\003/', "\r\n", $email);
-echo $email;
+$text = preg_replace('/\015/', "\r\n\r\n", $text);
+$text = preg_replace('/\003/', "\r\n", $text);
+echo $text;
