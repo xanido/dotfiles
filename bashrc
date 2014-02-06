@@ -1,9 +1,15 @@
-PATH=/usr/local/php5/bin:$PATH:/usr/local/mysql/bin:/usr/local/liquibase:/usr/local/sbin:/usr/local/composer/global/bin:/usr/local/magerun/bin
+# load paths
+for path in ~/.bash/path/*
+do
+    echo "Loading path from $path..."
+    PATH=$(cat $path):$PATH
+done
 
 alias ls="ls -G"
 alias ..="cd .."
 alias -- -="cd -"
 alias flushdns="sudo killall -HUP mDNSResponder"
+
 function getip() { nslookup "$@" | awk '{ if($1 == "Address:" && NR > 2 ){ print $2; } }' ;}
 function sr() { 
     if [ -z "$1" -o -z "$2" ] ; then
@@ -30,6 +36,7 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 export GREP_OPTIONS='--color=auto'
 
+export PROMPT_DIRTRIM=2
 source ~/.bash/git-prompt
 
 clear
