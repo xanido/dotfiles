@@ -1,0 +1,20 @@
+# AUG 2018
+# I have switched over to the homebrew version of apache
+# and also the brew versions of php.
+# Followed this guide for the most part: https://getgrav.org/blog/macos-sierra-apache-multiple-php-versions
+# SWITCHING BETWEEN PHP VERSION
+# installed brew-php-switcher, but had to make some mods:
+# - Changed apache_conf_path to point to the brew version's config
+# - Changed the php_conf paths to match the actual *.so file locations
+
+
+# LEGACY NOTES, PRE AUG 2018
+Use phpbrew to manage php version.
+
+To install new version of PHP;
+
+phpbrew install <version> +default +apxs2 +intl +gd=shared +iconv +mysql
+phpbrew switch <version>
+phpbrew ext install xdebug
+# for some reason, even though we compile php with gd support it doesn't seem to work, so install the extensions separately
+phpbrew ext install gd

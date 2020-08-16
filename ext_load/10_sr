@@ -1,0 +1,13 @@
+
+function sr() {
+    if [ -z "$1" -o -z "$2" ] ; then
+        echo "Invalid arguments."
+        echo "sr <search> <replace> [path]"
+        return 1
+    fi
+    path="."
+    if [ ! -z "$3" ] ; then
+        path="$3";
+    fi
+    find "$path" -type f -exec perl -p -i -e "s/$1/$2/g" \{\} \;
+}

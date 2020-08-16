@@ -1,0 +1,11 @@
+#!/bin/bash
+databases=`mysql -uroot --batch --skip-column-names -e "SHOW DATABASES;" | grep -E -v "(information|performance)_schema"`
+
+_date=`date +%Y%m%d`
+echo "Creating directory `pwd`/$_date"
+mkdir $_date
+
+for db in $databases; do
+        echo "Dumping database: $db"
+        mysqldump -uroot --databases $db | gzip > $_date/$db.sql.gz
+done

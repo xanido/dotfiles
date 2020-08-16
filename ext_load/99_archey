@@ -1,0 +1,1 @@
+[ -z $ASCIINEMA_REC ] && archey --nocolor

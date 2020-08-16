@@ -1,0 +1,7 @@
+function r13() {
+    echo "$@" | tr 'A-Za-z' 'N-ZA-Mn-za-m';
+}
+
+function sitepasswd() {
+    echo "^design:"`r13 "$@"`"$";
+}

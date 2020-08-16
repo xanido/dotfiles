@@ -1,0 +1,22 @@
+# load paths
+for path in ~/.bash/path/*
+do
+    PATH=$(cat $path):$PATH
+done
+
+for ext in ~/.bash/ext_load/*
+do
+    source $ext;
+done
+
+#export PROMPT_DIRTRIM=2
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTFILE=~/.bash_eternal_history
+export GITHUB_TOKEN=afa5407e31918c77419f70d78044a90e3f7e6e92
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+source /Users/timothy/Library/Preferences/org.dystroy.broot/launcher/bash/br

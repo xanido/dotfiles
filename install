@@ -1,0 +1,17 @@
+#!/bin/bash
+
+[ -f ~/.bashrc ] \
+  && mv ~/.bashrc ~/.bashrc~`date +"%Y%m%d_%H%M%S"` \
+  && echo "~/.bashrc found, backing up..."
+
+[ -f ~/.bash_profile ] \
+  && mv ~/.bash_profile ~/.bash_profile~`date +"%Y%m%d_%H%M%S"` \
+  && echo "~/.bash_profile found, backing up..."
+
+[ -f ~/.vimrc ] \
+  && mv ~/.vimrc ~/.vimrc~`date +"%Y%m%d_%H%M%S"` \
+  && echo "~/.vimrc found, backing up..."
+
+ln -s `pwd`/profile/bashrc ~/.bashrc
+ln -s `pwd`/profile/bash_profile ~/.bash_profile
+ln -s `pwd`/profile/vimrc ~/.vimrc
