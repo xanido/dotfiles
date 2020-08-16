@@ -64,7 +64,10 @@ function git_prompt_func() {
     fi
 }
 
+function promptmode {
+  ( [ -z "$1" ] || [ "1" == "$1" ] ) && PROMPT_COMMAND='git_prompt_func'
+  [ "$1" == "2" ] && PROMPT_COMMAND='' && PS1='\033[1;31m$\033[0m '
+}
 
-
-#PROMPT_COMMAND='git_prompt_func'
-[[ $ASCIINEMA_REC -eq 1 ]] && PS1='\033[1;31m$\033[0m ' || PROMPT_COMMAND='git_prompt_func'
+promptmode
+[[ $ASCIINEMA_REC -eq 1 ]] && promptmode 2
