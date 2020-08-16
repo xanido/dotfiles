@@ -13,7 +13,9 @@ done
 export HISTFILESIZE=
 export HISTSIZE=
 export HISTFILE=~/.bash_eternal_history
-export GITHUB_TOKEN=afa5407e31918c77419f70d78044a90e3f7e6e92
+
+# don't worry, this is revoked
+# export GITHUB_TOKEN=afa5407e31918c77419f70d78044a90e3f7e6e92
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
