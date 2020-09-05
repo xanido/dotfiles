@@ -32,7 +32,7 @@ function echo_update_stats {
 # Feed subscriptions are exemplified below.
 PODCAST_DIR=~/Podcasts
 
-download_files_from_feed http://xanido%40gmail.com:***REMOVED***@mysteriousuniverse.org/feed/muplushq/    $PODCAST_DIR/MU
+download_files_from_feed http://xanido%40gmail.com:***@mysteriousuniverse.org/feed/muplushq/    $PODCAST_DIR/MU
 
 # This one's sending notifications to my phone but might not be useful for you
 #/root/send_notification.sh "$(echo_update_stats $PODCAST_DIR)"
