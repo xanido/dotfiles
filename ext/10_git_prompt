@@ -1,3 +1,4 @@
+# vim: set ft=sh
         RED="\[\033[0;31m\]"
      YELLOW="\[\033[0;33m\]"
       GREEN="\[\033[0;32m\]"
@@ -54,8 +55,12 @@ export MYPSDIR='$(echo -n "${PWD/#$HOME/~}" | awk "$MYPSDIR_AWK")'
 
 function git_prompt_func() {
     previous_return_value=$?;
-    dir=$(eval "echo ${MYPSDIR}")
-    prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}[\u@\h:${dir}]$(parse_git_branch)${COLOR_NONE} "
+    if [ "$PROMPT_MODE" = "$PROMPT_MODE_GIT_COMPACT" ]; then
+        prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}$(parse_git_branch)${COLOR_NONE} "
+    else
+        dir=$(eval "echo ${MYPSDIR}")
+        prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}[\u@\h:${dir}]$(parse_git_branch)${COLOR_NONE} "
+    fi;
     if test $previous_return_value -eq 0
     then
         PS1="${prompt}→ "
@@ -64,10 +69,15 @@ function git_prompt_func() {
     fi
 }
 
+export PROMPT_MODE_GIT=1
+export PROMPT_MODE_GIT_COMPACT=2
+export PROMPT_MODE_BASIC=3
+
 function promptmode {
-  ( [ -z "$1" ] || [ "1" == "$1" ] ) && PROMPT_COMMAND='git_prompt_func'
-  [ "$1" == "2" ] && PROMPT_COMMAND='' && PS1='\033[1;31m$\033[0m '
+  export PROMPT_MODE=$1;
+  ( [ -z "$1" ] || [ "$PROMPT_MODE_GIT" == "$1" ] || [ "$PROMPT_MODE_GIT_COMPACT" == "$1" ] ) && PROMPT_COMMAND='git_prompt_func'
+  [ "$1" == "$PROMPT_MODE_BASIC" ] && PROMPT_COMMAND='' && PS1='\033[1;31m$\033[0m '
 }
 
 promptmode
-[[ $ASCIINEMA_REC -eq 1 ]] && promptmode 2
+[[ $ASCIINEMA_REC -eq 1 ]] && promptmode $PROMPT_MODE_BASIC

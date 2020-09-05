@@ -1,2 +1,4 @@
+# vim: set ft=sh
+
 GOPATH=~/go
 PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin

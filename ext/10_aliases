@@ -1,0 +1,37 @@
+# vim: set ft=sh
+
+alias ls="ls -G" # colours
+alias ..="cd .."
+alias -- -="cd -"
+alias flushdns="sudo discoveryutil mdnsflushcache && sudo discoveryutil udnsflushcaches && sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
+alias ql='qlmanage -p "$@" > /dev/null'
+alias apacherestart="sudo apachectl restart"
+alias stree='/Applications/SourceTree.app/Contents/Resources/stree'
+site() { cd ~/src/client-sites/$1; }
+
+# handy docker shortcuts
+alias d="docker"
+alias dc="docker-compose"
+alias dcrun="dc run --rm"
+
+# some little git shortcuts
+alias gc="git clone"
+alias gco="git checkout"
+alias gcm="git checkout master"
+
+# workaround for https://github.com/asciinema/asciinema/pull/400
+alias asciinema="ASCIINEMA_REC=1 asciinema"
+
+# scan node_modules for symlinked packages
+alias yarn-links='find node_modules -type l -exec test -d {} \; -print | while read path; do (readlink "$path" | grep "yarn\/link" > /dev/null) && echo "$path" | sed -e "s/node_modules\///g"; done'
+yarn() {
+    if [[ $@ == "links" ]]; then
+        yarn-links
+    else
+        command yarn "$@"
+    fi
+}
+
+# spin up a serveo tunnel on port 3000
+# todo: seems like serveo is dead, remove?
+alias serveo='ssh -R 80:localhost:3000 serveo.net'

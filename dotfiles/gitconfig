@@ -1,0 +1,56 @@
+# vim: filetype=gitconfig
+[user]
+  name = Tim Anido
+  email = xanido@gmail.com
+[merge]
+  tool = diffmerge
+[diff]
+  tool = diffmerge
+[difftool "diffmerge"]
+  cmd = diffmerge "$LOCAL" "$REMOTE"
+[mergetool "diffmerge"]
+  trustExitCode = true
+  cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+[color]
+  ui = true
+[core]
+  quotepath = false
+  excludesfile = /Users/timothy/.gitignore_global
+  pager = diff-so-fancy | less --tabs=4 -RFX
+[rerere]
+  enabled = true
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  d = diffall
+  di = diffall --cached
+  graph = log --graph --decorate
+  exec = "!exec "
+  rootcdup = rev-parse --show-cdup ;https://stackoverflow.com/a/957978/696756
+  rootdir = rev-parse --show-toplevel
+	ch = !~/.bash/git-checkout.py
+  switch = "!switch() { git checkout ${1#origin/} 2>/dev/null || git checkout -b $1; }; switch"
+  amend = ! git commit --amend --no-edit
+[push]
+  default = current
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
+[mergetool "sourcetree"]
+  cmd = /Users/timothy/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  meta = blue
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+[diff-so-fancy]
+  first-run = false

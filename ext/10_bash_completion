@@ -1,0 +1,7 @@
+# vim: set ft=sh
+
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# autocomplete symlinked dirs correctly
+# https://superuser.com/a/271677
+bind 'set mark-symlinked-directories on'

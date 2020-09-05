@@ -12,6 +12,11 @@
   && mv ~/.vimrc ~/.vimrc~`date +"%Y%m%d_%H%M%S"` \
   && echo "~/.vimrc found, backing up..."
 
-ln -s `pwd`/profile/bashrc ~/.bashrc
-ln -s `pwd`/profile/bash_profile ~/.bash_profile
-ln -s `pwd`/profile/vimrc ~/.vimrc
+[ -f ~/.gitconfig ] \
+  && mv ~/.gitconfig ~/.gitconfig~`date +"%Y%m%d_%H%M%S"` \
+  && echo "~/.gitconfig found, backing up..."
+
+ln -s `pwd`/dotfiles/bashrc ~/.bashrc
+ln -s `pwd`/dotfiles/bash_profile ~/.bash_profile
+ln -s `pwd`/dotfiles/vimrc ~/.vimrc
+ln -s `pwd`/dotfiles/gitconfig ~/.gitconfig

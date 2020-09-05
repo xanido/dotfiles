@@ -1,0 +1,14 @@
+# vim: set ft=sh
+
+BASHED_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+for lib in "$BASHED_PATH/lib"/*
+do
+  [ -f "$lib" ] && source $lib;
+done
+
+if [ -f ~/.bashedrc ]; then
+  source ~/.bashedrc
+fi
+
+bashed::load_plugin $BASHED_PATH
