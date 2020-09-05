@@ -1,6 +1,7 @@
 bashed::register_dotfiles() {
     local source_path path
     source_path=$1
+    [ ! -d "$source_path" ] && return
     for path in "$source_path"/*
     do
         base=$(basename "$path")
@@ -11,7 +12,7 @@ bashed::register_dotfiles() {
             bashed::log::debug "dotfile ~/.$base exists, backing up..."
             mv ~/.$base ~/.${base}~`date +'%Y%m%d_%H%M%S'`
           fi
-          bashed::log::info "symlinking dotfile ~/.base"
+          bashed::log::info "symlinking dotfile ~/.$base"
           ln -s "$path" ~/.$base
         fi
     done

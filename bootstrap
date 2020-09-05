@@ -12,3 +12,10 @@ if [ -f ~/.bashedrc ]; then
 fi
 
 bashed::load_plugin $BASHED_PATH
+
+if [ -d "$BASHED_PATH/plugins/enabled" ]; then
+  for plugin in "$BASHED_PATH/plugins/enabled"/*
+  do
+    bashed::load_plugin $lib
+  done
+fi
