@@ -1,3 +1,3 @@
 bashed::strtoupper() {
-    echo "$@" | awk '{print toupper($0)}'
+  echo "$@" | awk '{print toupper($0)}'
 }

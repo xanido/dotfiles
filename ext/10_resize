@@ -1,15 +1,15 @@
+# vim: set ft=sh
+
 # $1: max dimensions (e.g. 2000x1600)
 batch_resize() {
-    find "`pwd`" -not -path '*/\.*' -type f -iname "*.jpg" -print0 | while read -d $'\0' image
-    do
-        dir=$(dirname "$image")
-        dest="${dir}/_RESIZED ($1)"
-        base=$(basename "$dir")
-        filename=$(basename "$image")
-        if [ "$base" = "`basename $dest`" ]; then continue; fi;
-        echo "processing ${filename}..."
-        mkdir -p "$dest"
-        convert "$image" -resize "$1" -quality 75 "$dest/$filename"
-    done
+  find "$(pwd)" -not -path '*/\.*' -type f -iname "*.jpg" -print0 | while read -d $'\0' image; do
+    dir=$(dirname "$image")
+    dest="${dir}/_RESIZED ($1)"
+    base=$(basename "$dir")
+    filename=$(basename "$image")
+    if [ "$base" = "$(basename $dest)" ]; then continue; fi
+    echo "processing ${filename}..."
+    mkdir -p "$dest"
+    convert "$image" -resize "$1" -quality 75 "$dest/$filename"
+  done
 }
-

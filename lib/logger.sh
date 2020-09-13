@@ -9,21 +9,21 @@ BASHED_LOG_LEVEL_DEBUG=4
 
 # most common logging fn
 bashed::log() {
-    bashed::log::info "$@"
+  bashed::log::info "$@"
 }
 
 bashed::log::err() {
-    [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_ERROR ]] && echo "$@"
+  [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_ERROR ]] && echo "$@"
 }
 
 bashed::log::warn() {
-    [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_WARN ]] && echo "$@"
+  [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_WARN ]] && echo "$@"
 }
 
 bashed::log::info() {
-    [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_INFO ]] && echo "$@"
+  [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_INFO ]] && echo "$@"
 }
 
 bashed::log::debug() {
-    [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_DEBUG ]] && echo "$@"
+  [[ "$BASHED_LOG_LEVEL" -ge $BASHED_LOG_LEVEL_DEBUG ]] && echo "$@"
 }

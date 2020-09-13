@@ -1,2 +1,3 @@
-clear
-[ -z $ASCIINEMA_REC ] && archey
+# vim: set ft=sh
+
+[ -z $ASCIINEMA_REC ] && clear && archey

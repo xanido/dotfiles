@@ -3,7 +3,6 @@
 
 git config --global alias.ch '!~/.bash/git-checkout.py'
 
-
 existing-pr() {
   local branch
   if branch="$(git rev-parse --symbolic-full-name @{upstream} 2>/dev/null)"; then
@@ -52,5 +51,3 @@ alias gf='git fetch'
 
 git_completion_path="/Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash"
 [ -f "$git_completion_path" ] && source "$git_completion_path"
-
-

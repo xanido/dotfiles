@@ -1,3 +1,4 @@
+# vim: set ft=sh
 
 function sr() {
     if [ -z "$1" -o -z "$2" ] ; then

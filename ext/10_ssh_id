@@ -1,1 +1,3 @@
+# vim: set ft=sh
+
 find ~/.ssh -type f -not -regex ^.*.pub$ -not -name config -not -name known_hosts -exec ssh-add \{\} \; &>/dev/null

@@ -1,10 +1,9 @@
 # vim: set ft=sh
 
-BASHED_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+BASHED_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-for lib in "$BASHED_PATH/lib"/*
-do
-  [ -f "$lib" ] && source $lib;
+for lib in "$BASHED_PATH/lib"/*; do
+  [ -f "$lib" ] && source $lib
 done
 
 if [ -f ~/.bashedrc ]; then
@@ -14,8 +13,7 @@ fi
 bashed::load_plugin $BASHED_PATH
 
 if [ -d "$BASHED_PATH/plugins/enabled" ]; then
-  for plugin in "$BASHED_PATH/plugins/enabled"/*
-  do
+  for plugin in "$BASHED_PATH/plugins/enabled"/*; do
     bashed::load_plugin $plugin
   done
 fi

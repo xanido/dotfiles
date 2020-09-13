@@ -1,4 +1,5 @@
 # vim: set ft=sh
+
 function getip() {
-    nslookup "$@" | awk '{ if($1 == "Address:" && NR > 2 ){ print $2; } }' ;
+  nslookup "$@" | awk '{ if($1 == "Address:" && NR > 2 ){ print $2; } }'
 }

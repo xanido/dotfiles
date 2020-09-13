@@ -25,11 +25,11 @@ alias asciinema="ASCIINEMA_REC=1 asciinema"
 # scan node_modules for symlinked packages
 alias yarn-links='find node_modules -type l -exec test -d {} \; -print | while read path; do (readlink "$path" | grep "yarn\/link" > /dev/null) && echo "$path" | sed -e "s/node_modules\///g"; done'
 yarn() {
-    if [[ $@ == "links" ]]; then
-        yarn-links
-    else
-        command yarn "$@"
-    fi
+  if [[ $@ == "links" ]]; then
+    yarn-links
+  else
+    command yarn "$@"
+  fi
 }
 
 # spin up a serveo tunnel on port 3000

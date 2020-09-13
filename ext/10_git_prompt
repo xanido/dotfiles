@@ -1,19 +1,19 @@
 # vim: set ft=sh
-        RED="\[\033[0;31m\]"
-     YELLOW="\[\033[0;33m\]"
-      GREEN="\[\033[0;32m\]"
-       BLUE="\[\033[0;34m\]"
- LIGHT_BLUE="\[\033[1;34m\]"
-  LIGHT_RED="\[\033[1;31m\]"
+RED="\[\033[0;31m\]"
+YELLOW="\[\033[0;33m\]"
+GREEN="\[\033[0;32m\]"
+BLUE="\[\033[0;34m\]"
+LIGHT_BLUE="\[\033[1;34m\]"
+LIGHT_RED="\[\033[1;31m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
-      WHITE="\[\033[1;37m\]"
- LIGHT_GRAY="\[\033[0;37m\]"
- COLOR_NONE="\[\e[0m\]"
+WHITE="\[\033[1;37m\]"
+LIGHT_GRAY="\[\033[0;37m\]"
+COLOR_NONE="\[\e[0m\]"
 
-function parse_git_branch {
-  git_status="$(git status 2> /dev/null)"
+function parse_git_branch() {
+  git_status="$(git status 2>/dev/null)"
   if [ -x git_status ]; then exit; fi
-  git_stash="$(git stash list 2> /dev/null)"
+  git_stash="$(git stash list 2>/dev/null)"
   branch_pattern="^On branch ([^${IFS}]*)"
   remote_pattern="Your branch is (.*) of"
   diverge_pattern="Your branch and (.*) have diverged"
@@ -21,7 +21,7 @@ function parse_git_branch {
     state="${RED}★ "
   fi
   if [[ -n ${git_stash} ]]; then
-      stash="${YELLOW}⌇ ${COLOR_NONE}"$(git stash list | wc -l | tr -d ' ')" "
+    stash="${YELLOW}⌇ ${COLOR_NONE}"$(git stash list | wc -l | tr -d ' ')" "
   fi
   # add an else if or two here if you want to get more specific
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
@@ -40,7 +40,8 @@ function parse_git_branch {
   fi
 }
 
-MYPSDIR_AWK=$(cat << 'EOF'
+MYPSDIR_AWK=$(
+  cat <<'EOF'
 BEGIN { FS = OFS = "/" }
 {
    if (length($0) > 16 && NF > 4)
@@ -54,28 +55,27 @@ EOF
 export MYPSDIR='$(echo -n "${PWD/#$HOME/~}" | awk "$MYPSDIR_AWK")'
 
 function git_prompt_func() {
-    previous_return_value=$?;
-    if [ "$PROMPT_MODE" = "$PROMPT_MODE_GIT_COMPACT" ]; then
-        prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}$(parse_git_branch)${COLOR_NONE} "
-    else
-        dir=$(eval "echo ${MYPSDIR}")
-        prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}[\u@\h:${dir}]$(parse_git_branch)${COLOR_NONE} "
-    fi;
-    if test $previous_return_value -eq 0
-    then
-        PS1="${prompt}→ "
-    else
-        PS1="${prompt}${RED}→${COLOR_NONE} "
-    fi
+  previous_return_value=$?
+  if [ "$PROMPT_MODE" = "$PROMPT_MODE_GIT_COMPACT" ]; then
+    prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}$(parse_git_branch)${COLOR_NONE} "
+  else
+    dir=$(eval "echo ${MYPSDIR}")
+    prompt="${LIGHT_RED}[\$(date +%H):$(date +%M)]${WHITE}[\u@\h:${dir}]$(parse_git_branch)${COLOR_NONE} "
+  fi
+  if test $previous_return_value -eq 0; then
+    PS1="${prompt}→ "
+  else
+    PS1="${prompt}${RED}→${COLOR_NONE} "
+  fi
 }
 
 export PROMPT_MODE_GIT=1
 export PROMPT_MODE_GIT_COMPACT=2
 export PROMPT_MODE_BASIC=3
 
-function promptmode {
-  export PROMPT_MODE=$1;
-  ( [ -z "$1" ] || [ "$PROMPT_MODE_GIT" == "$1" ] || [ "$PROMPT_MODE_GIT_COMPACT" == "$1" ] ) && PROMPT_COMMAND='git_prompt_func'
+function promptmode() {
+  export PROMPT_MODE=$1
+  ([ -z "$1" ] || [ "$PROMPT_MODE_GIT" == "$1" ] || [ "$PROMPT_MODE_GIT_COMPACT" == "$1" ]) && PROMPT_COMMAND='git_prompt_func'
   [ "$1" == "$PROMPT_MODE_BASIC" ] && PROMPT_COMMAND='' && PS1='\033[1;31m$\033[0m '
 }
 
