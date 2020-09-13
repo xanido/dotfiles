@@ -16,6 +16,6 @@ bashed::load_plugin $BASHED_PATH
 if [ -d "$BASHED_PATH/plugins/enabled" ]; then
   for plugin in "$BASHED_PATH/plugins/enabled"/*
   do
-    bashed::load_plugin $lib
+    bashed::load_plugin $plugin
   done
 fi
