@@ -1,2 +1,2 @@
 clear
-[ -z $ASCIINEMA_REC ] && archey --nocolor
+[ -z $ASCIINEMA_REC ] && archey
