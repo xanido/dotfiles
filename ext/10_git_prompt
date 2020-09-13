@@ -79,5 +79,5 @@ function promptmode {
   [ "$1" == "$PROMPT_MODE_BASIC" ] && PROMPT_COMMAND='' && PS1='\033[1;31m$\033[0m '
 }
 
-promptmode
+promptmode $PROMPT_MODE
 [[ $ASCIINEMA_REC -eq 1 ]] && promptmode $PROMPT_MODE_BASIC
